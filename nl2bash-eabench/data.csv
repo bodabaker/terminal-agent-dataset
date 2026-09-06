@@ -1,0 +1,2378 @@
+prompt,script
+Create a new directory test in the current directory,"#!/bin/bash
+mkdir test"
+Rename file a.txt to b.json in the current directory,"#!/bin/bash
+mv a.txt b.json"
+Append the current user to users.txt in the current directory,"#!/bin/bash
+whoami >> users.txt"
+"Add ""Line of text here"" on top of each *.py files under current directory","#!/bin/bash
+find . -name \*.py -print0 | xargs -0 sed -i '1 i Line of text here'"
+Count all directories under current directory,"#!/bin/bash
+find . -mindepth 1 -type d | wc -l"
+"Count all files under ""dir"" in the current directory","#!/bin/bash
+find dir -type f | wc -l"
+Calculate md5 sum of empty string,"#!/bin/bash
+echo -n | md5sum"
+Print the process ids of top 5 cpu consumers,"#!/bin/bash
+
+ps -eo pid,%cpu --sort=-%cpu | awk 'NR>1{print $1}' | head -5"
+Print the process ids of top 5 memory consumers,"#!/bin/bash
+ps -eo pid,%mem --sort=-%mem | awk 'NR>1{print $1}' | head -5"
+Fetch the memory currently 'available' in the system,"#!/bin/bash
+free -h | grep Mem: | awk '{print $7}'"
+Fetch total memory present in the system,"#!/bin/bash
+free -h | grep Mem: | awk '{print $2}'"
+Copy file test.txt from directory dir1 to dir2 in the current directory,"#!/bin/bash
+cp dir1/test.txt dir2"
+Fetch total memory used in the system,"#!/bin/bash
+free -h | grep Mem: | awk '{print $3}'"
+Fetch remaining space on device overlay,"#!/bin/bash
+df -h | grep overlay | awk '{print $4}'"
+Print total space used on device overlay,"#!/bin/bash
+df -h | grep overlay | awk '{print $3}'"
+Check available inodes on overlay file system,"#!/bin/bash
+df -ih | grep overlay | awk '{print $4}'"
+Check used inodes on overlay file system,"#!/bin/bash
+df -ih | grep overlay | awk '{print $3}'"
+Fetch the top 5 largest files in the current directory,"#!/bin/bash
+find . -type f -exec ls -lSh {} + | head -n 5"
+Change the working directory to /var,"#!/bin/bash
+cd /var"
+Count the number of lines in a.txt file in current directory,"#!/bin/bash
+cat a.txt | wc -l"
+Count the number of files named file1 in the current directory,"#!/bin/bash
+
+find . -type f -name 'file1' | wc -l"
+Count number of .txt files present in directory /app/dir,"#!/bin/bash
+
+find /app/dir -type f -name '*.txt' | wc -l"
+"Create a new file test.json in the current directory with the content {""name"": ""test""}","#!/bin/bash
+echo '{ ""name"": ""test"" }' > ./test.json"
+Count the number of 'x' characters in a.txt in the current directory,"#!/bin/bash
+
+grep -o 'x' a.txt | wc -l"
+Count all the lines of all '*.c' files in current directory recursively,"#!/bin/bash
+
+find . -name ""*.c"" -print0 | xargs -0 cat | wc -l"
+Add 'prefix_' to every non-blank line in file.txt in the current directory,"#!/bin/bash
+
+sed -i -e '/^$/!s/^/prefix_/' file.txt"
+Add a line number to every line in file.txt in the current directory,"#!/bin/bash
+
+awk '{print NR"" ""$0}' file.txt > temp_file && mv temp_file file.txt"
+Add line numbers to each non-blank line in file.txt in the current directory starting with number 101,"#!/bin/bash
+
+awk 'BEGIN{counter=101} !/^\s*$/{print counter"" ""$0; counter++} /^\s*$/{print}' file.txt > temp_file && mv temp_file file.txt"
+Display only the content of file.txt in the present directory,"#!/bin/bash
+
+cat file.txt"
+Print md5 sum of file file.txt in the current directory,"#!/bin/bash
+
+md5sum file.txt"
+Calculate and show md5 sums for every files under current directory tree,"#!/bin/bash
+
+find dir -type f -exec md5sum {} +"
+Change permissions to 766 for all directories in the /app/dir directory,"#!/bin/bash
+
+find dir -type d -exec chmod 766 {} +"
+Change permissions to 644 for all files under the /app/dir tree,"#!/bin/bash
+
+find dir -type f -exec chmod 0644 {} +"
+Move file test.txt from directory dir1 to dir2 in the current directory,"#!/bin/bash
+mv dir1/test.txt dir2"
+Count the number of same lines in 'file1.txt' and 'file2.txt',"#!/bin/bash
+
+comm -12 <(sort file1.txt | uniq) <(sort file2.txt | uniq) | wc -l"
+Count the number of different lines in 'file1.txt' and 'file2.txt',"#!/bin/bash
+
+comm -3 <(sort file1.txt | uniq) <(sort file2.txt | uniq) | wc -l"
+Display 12345 backwards,"#!/bin/bash
+
+echo 12345 | rev"
+Display hostname,"#!/bin/bash
+
+uname -n"
+"Display kernel name, release, and version","#!/bin/bash
+
+uname -s -r -v"
+"Display machine architecture, ie. x86_64","#!/bin/bash
+
+uname -m"
+Delete all files in folder 'dir' present in the current directory,"#!/bin/bash
+
+find dir -type f -exec rm -f {} +"
+Delete all '.c' files in folder 'dir' present in the current directory,"#!/bin/bash
+
+find dir -type f -name ""*.c"" -exec rm -f {} +"
+Delete '/app/dir' folder along with all files/folders present in it,"#!/bin/bash
+
+rm -rf /app/dir"
+Take filename as command line argument input and display the content of the filename,"#!/bin/bash
+
+cat $1"
+Delete file test.json from the current directory,"#!/bin/bash
+rm test.json"
+Take filename and a target directory as command line argument input and move filename to the target directory,"#!/bin/bash
+
+mv $1 $2"
+Make the file run.py executable,"#!/bin/bash
+chmod +x run.py"
+Move all the files from directory dir1 to dir2 in the current directory,"#!/bin/bash
+mv dir1/* dir2"
+Move all .txt files from directory dir1 to dir2 in the current directory,"#!/bin/bash
+mv dir1/*.txt dir2"
+Copy all .txt files from directory dir1 to dir2 in the current directory,"#!/bin/bash
+cp -r dir1/*.txt dir2"
+What is the bash command to show the free space on all filesystems?,"#!/bin/bash
+df"
+What is the bash command which lists the name and pids of the top 5 processes by percentage of CPU usage?,"#!/bin/bash
+ps -eo pcpu,pid,cmd k -pcpu | head -10"
+What is the bash command which shows how much free memory a system has?,"#!/bin/bash
+free -m"
+What is the bash command which shows how much free space there is on the root filesystem?,"#!/bin/bash
+df -h /"
+What is the bash command that shows the disk space used by the directory /var/log?,"#!/bin/bash
+du -sh /var/log"
+What is the bash command to show the last date and time the system was rebooted?,"#!/bin/bash
+uptime -s
+#last reboot"
+What is the bash command which shows how long the system has been up?,"#!/bin/bash
+uptime"
+What is the bash command to show who is currently logged into the system?,"#!/bin/bash
+who"
+What is the bash command to install wget on Redhat without user input?,"#!/bin/bash
+yum install wget -y"
+How do I set my user's time zone to Los Angeles in bash?,"#!/bin/bash
+export TZ=America/Los_Angeles"
+What is the bash command to show the version of the kernel?,"#!/bin/bash
+uname -r"
+What is the bash command to show the version of the operating system?,"#!/bin/bash
+cat /etc/os-release"
+What is the bash command to find the largest file under my home directory?,"#!/bin/bash
+find ~ -type f -printf ""%s %f\\n"" | sort -n | tail -1"
+What is the bash command to make data.dat readable by just the owner?,"#!/bin/bash
+chmod 0600 data.dat"
+What is the bash command to set the file creation mask so that only the owner has file write permission?,"#!/bin/bash
+umask 022"
+What is the bash command to create a new file called data.dat with a size of 512K bytes?,"#!/bin/bash
+fallocate -l 512K data.dat"
+What is the bash command to create an ext3 filesystem in my existing file named disk.img?,"#!/bin/bash
+mkfs.ext3 disk.img"
+What is the bash command to set the system's timezone to Los Angeles?,"#!/bin/bash
+timedatectl set-timezone America/Los_Angeles"
+What is the bash command to create a new group called slackers?,"#!/bin/bash
+groupadd slackers"
+What is the bash command to add user test to the group called slackers?,"#!/bin/bash
+usermod -a -G slackers test"
+What is the bash command to add user test to the slackers group as administrator?,"#!/bin/bash
+gpasswd -A test slackers"
+What is the bash command to remove the group password from the slackers group?,"#!/bin/bash
+gpasswd -r slackers"
+What is the bash command to restrict access of all users in the group named slackers?,"#!/bin/bash
+gpasswd -R slackers"
+What is the bash command to remove user test from the slackers group?,"#!/bin/bash
+gpasswd -d test slackers"
+What is the bash command to remove the slackers group?,"#!/bin/bash
+groupdel slackers"
+What is the bash command to add a new user named dodger?,"#!/bin/bash
+useradd dodger"
+What is the bash command to add a login for a new user named dodger which expires 90 days from today?,"#!/bin/bash
+useradd -e $(date -d ""+90 days"" +%Y-%m-%d) -m dodger"
+What is the bash command which will give me the date 90 days from today?,"#!/bin/bash
+date --date=""90 days"""
+What is the bash command to create a new systems group called hackers?,"#!/bin/bash
+groupadd -r hackers"
+What is the bash command to lock user snoopy's account?,"#!/bin/bash
+# usermod -L snoopy
+passwd -l snoopy"
+What is the bash command to force user snoopy to change their password at next login?,"#!/bin/bash
+passwd -e snoopy"
+What is the bash command to modify the access time of my file data.dat to be 12:00 on 2022-12-31?,"#!/bin/bash
+touch -a -t 202212311200 data.dat"
+What is the bash command to create a FIFO named myfifo in /tmp?,"#!/bin/bash
+mknod /tmp/myfifo p"
+"What is the bash command to insert ""#!/usr/bin/python3"" at the top of each *.py files under the current directory?","#!/bin/bash
+find . -name ""*.py"" | xargs sed -i '1i #!/usr/bin/python3'"
+"What is the bash command to rename all of my files named ""pgm?.py"" by replacing the string ""pgm"" with ""pgm00""?","#!/bin/bash
+rename pgm pgm00 pgm?.py"
+"What is the bash command to prefix every non-blank line in file.log with the string ""stdout ""?","#!/bin/bash
+sed -i -e '/^$/!s/^/stdout /' file.log"
+"What is the bash command to change the file extension from "".mpg"" to "".avi"" for every file in directory /home/test/uploads?","#!/bin/bash
+# BAM: for f in /home/test/uploads/*.mpg; do mv ""$f"" ""${f%.mpg}.avi""; done
+rename .mpg .avi uploads/*"
+What is the bash command to prefix the line number to every line in file.log?,"#!/bin/bash
+# BAM:  cat -n file.log
+nl -ba file.log"
+What is the bash command to make the file pretty-print.sh executable?,"#!/bin/bash
+chmod +x pretty-print.sh"
+What is the bash command to append all PNG and JPG files to the existing tar archive file images.tar?,"#!/bin/bash
+tar -rf images.tar *.png *.jpg"
+"What is the bash command to calculate the md5 checksum of every file under the directory named ""Downloads""?","#!/bin/bash
+find Downloads -type f -exec md5sum {} \;"
+What is the bash command to change the group ownership to slackers of my file named download.dat?,"#!/bin/bash
+# test must be a member of slackers
+chgrp slackers download.dat"
+What is the bash command to count all of the directories under my home directory?,"#!/bin/bash
+find . -type d | wc -l"
+What is the bash command to list the *.dat files in the current directory in ascending order by size?,"#!/bin/bash
+ls -lSr *.dat"
+What is the bash command to create the path src/vpd/vpd_sliop/new without an error if the path already exists?,"#!/bin/bash
+mkdir -p src/vpd/vpd_sliop/new"
+What is the bash command to list all files in my Downloads directory which have not been accessed within the last 3 weeks?,"#!/bin/bash
+find Downloads -type f -atime +21"
+What is the bash command to count the total number of lines in the *.c files under my src directory?,"#!/bin/bash
+find src -name ""*.c"" -exec cat {} \; | wc -l"
+What is the bash command to find all *.c and *.h files under the src directory containing the pattern TODO and print just the file names?,"#!/bin/bash
+find src \( -name ""*.c"" -o -name ""*.h"" \) -exec grep -l TODO {} \;"
+"How can I use a bash script to calculate the number of days between the dates Jan 12, 2023 and Jan 20, 2024?","#!/bin/bash
+echo $(( ( $(date -d ""Jan 20, 2024"" +""%s"") - $(date -d ""Jan 12, 2023"" +""%s"") ) / (24*60*60) ))"
+What is the bash command to show the fully-qualified domain name of my host?,"#!/bin/bash
+hostname -f"
+What is the bash script which searches the directory /home/test/downloads for symbolic links to files in /home/test/uploads and adds the name of the target file to the file uploads.targets in /home/test?,"#!/bin/bash
+
+find /home/test/downloads -type l | while read -r line; do
+  target=$(readlink -f ""$line"")
+
+  if [[ $(dirname $target) == ""/home/test/uploads"" ]]; then
+    filename=$(basename ""$target"")
+    echo ""$filename"" >> /home/test/uploads.targets
+  fi
+done"
+"What is the bash script which, for each user in /etc/shadow, prints out the number of days before thair password expires?","#!/bin/bash
+
+while IFS=: read -r user pass last min max warn inactive account; do
+  # echo $user $last $min $max $warn $inactive $account
+  if [[ -z $max ]]; then
+    continue
+  fi
+
+  # Calculate the number of days until the password expires
+  days=$(( ($last + $max - ( $(date +%s) / 86400) ) ))
+
+  # Print out the user and the number of days until their password expires
+  echo ""$user: password expires in $days days""
+done < /etc/shadow"
+What is the bash script which replaces the cd command with a function that automatically calls ls after successfully changing directory?,"#!/bin/bash
+
+cd() {
+    builtin cd ""$@"" && ls
+}"
+What is the bash script which checks for duplicate user names in /etc/passwd?,"#!/bin/bash
+
+# Check if the user running the script is root
+if [ ""$(id -u)"" != ""0"" ]; then
+    echo ""This script must be run as root""
+    exit 1
+fi
+
+# Read each line from /etc/passwd
+while IFS=: read -r username x uid gid gecos home shell
+do
+    # Count the number of occurrences of the username
+    count=$(grep -c -E ""^$username"" /etc/passwd)
+
+    # If the count is greater than 1, print a message
+    if [ ""$count"" -gt 1 ]; then
+        echo ""Duplicate user name: $username""
+    fi
+done < /etc/passwd"
+What is the bash script which checks that each user's group in /etc/passwd exists in /etc/group?,"#!/bin/bash
+
+# Read /etc/passwd file
+while IFS=: read -r user x uid gid gecos home shell; do
+  # Check if group exists in /etc/group
+  grep -q "":$gid:"" /etc/group
+  if [ $? -ne 0 ]; then
+    echo ""Group $gid for user $user does not exist in /etc/group""
+  fi
+done < /etc/passwd"
+What is the bash script which takes a list of process ids and prints only those that have a parent pid of 1?,"#!/bin/bash
+
+# Check if the argument is provided
+if [ -z ""$1"" ]; then
+    echo ""Usage: $0 <pid1> <pid2> ...""
+    exit 1
+fi
+
+# Iterate through the list of pids
+for pid in ""$@""; do
+    # Check if the parent pid is 1
+    ppid=$(ps -o ppid= --no-headers ""$pid"")
+    if [[ -n ""$ppid""  &&  $ppid -eq 1 ]]
+    then
+        echo ""$pid""
+    fi
+done"
+What is the bash script which identifies the user who owns the largest number of files under /home?,"#!/bin/bash
+#
+# Write a bash script which identifies the user who owns the highest number of files under /home.
+#
+
+# Initialize variables
+max_files=0
+max_user=""""
+
+# Loop through all users in /home
+for user in /home/*; do
+    # Skip directories that are not users
+    if [[ ! -d ""$user"" ]]; then
+        continue
+    fi
+
+    # Count the number of files owned by the user
+    num_files=$(find ""$user"" -type f -user ""$(basename ""$user"")"" | wc -l)
+
+    # Update the maximum if necessary
+    if (( num_files > max_files )); then
+        max_files=$num_files
+        max_user=$(basename ""$user"")
+    fi
+done
+
+# Print the user with the most files
+echo ""User with the most files: $max_user"""
+What is the bash script which identifies the group that owns the largest number of files under /home?,"#!/bin/bash
+#
+# Write a bash script which identifies the group that owns the highest number of files under /home.
+#
+
+# Find files under /home and get group ownership information
+find /home -type f -exec stat -c '%G' {} + |
+
+# Count the number of files per group
+sort | uniq -c |
+
+# Find the group with the highest count
+awk '$1 > max { max = $1; group = $2 } END { print group, max }' max=0"
+What is the bash script to list all groups which have two or more members?,"#!/bin/bash
+#
+# Write a bash script to list all group which have two of more members.
+#
+
+for group in $(getent group | cut -d: -f1); do
+  members=$(getent group $group | cut -d: -f4 | tr ',' '\n' | sort | uniq)
+  if [ $(echo ""$members"" | wc -l) -gt 1 ]; then
+    echo ""Group: $group""
+    echo ""Members: $members""
+  fi
+done"
+What is the bash script which converts its 32-bit argument from hex to BCD?,"#!/bin/bash
+#
+# Write a bash script which converts its 32-bit argument from hex to BCD.
+#
+# 32-bit number: we'll need 4*ceil(32/3) bits or 44 bits
+#
+# This code expanded to handle up to 48-bit input
+#  - 4*ceil(48/3) is 64 bits
+#
+
+function add() {
+    local bcd=$1
+    for(( i=0; i<16; i++ ))
+    do
+        n=$(( 4*i ))
+        bcd=$(( ((bcd >> $n) & 0xF) < 5 ? bcd : (bcd + (3 << $n)) ))
+    done
+    echo $bcd
+}
+
+# Check if the argument is a 32-bit hexadecimal number
+hex=$1
+hex=${hex/#0X/}
+hex=${hex/#0x/}
+if [[ $hex =~ ^[0-9A-Fa-f]*$ ]]; then
+    hex=0x$hex
+    if (( $hex < (1<<48) ))
+    then
+        bcd=0
+        for(( i=0; i<47; i++ ))
+        do
+            bcd=$(( bcd << 1 | (hex>>47) & 1 )); hex=$(( hex << 1 ))
+            #printf ""%2d: %X --> "" $i $bcd
+            bcd=$(add $bcd)
+            #printf ""%X\n"" $bcd
+        done
+        bcd=$(( bcd << 1 | (hex>>47) & 1 ))
+        # Print as hex but will look like decimal
+        printf ""%X\n"" $bcd
+    else
+        printf ""%X is too large\n"" $hex
+    fi
+else
+  # Print an error message if the argument is not a 32-bit hexadecimal number
+  echo ""Error: $1 is not a 32-bit hexadecimal number.""
+fi"
+What is the bash script to find the greatest common divisor of its two integer arguments?,"#!/bin/bash
+#
+# Write a bash script to find the greatest common divisor of its two integer arguments.
+#
+# ./gcd.sh 9504167 12677501
+# ./gcd.sh 42 56
+#
+
+# Function to find the GCD of two numbers
+gcd() {
+    local a=$1
+    local b=$2
+    #printf ""\n%d %d\n"" $a $b
+    while [ $a -ne $b ]; do
+        if [ $a -gt $b ]; then
+            a=$(( a - b ))
+        else
+            b=$(( b - a ))
+        fi
+        #printf ""%d %d\n"" $a $b
+    done
+    echo $a
+}
+
+# Check if the correct number of arguments are provided
+if [ ""$#"" -ne 2 ]; then
+    echo ""Usage: $0 <integer1> <integer2>""
+    exit 1
+fi
+
+# Call the gcd function with the provided arguments
+result=$(gcd ""$1"" ""$2"")
+
+# Print the result
+echo ""The GCD of $1 and $2 is: $result"""
+What is the bash script which outputs the first n Mersenne prime numbers where n is given as an argument to the script?,"#!/bin/bash
+#
+# 2^2 - 1 = 3 is a Mersenne prime
+# 2^3 - 1 = 7 is a Mersenne prime
+# 2^5 - 1 = 31 is a Mersenne prime
+# 2^7 - 1 = 127 is a Mersenne prime
+# 2^13 - 1 = 8191 is a Mersenne prime
+# 2^17 - 1 = 131071 is a Mersenne prime
+# 2^19 - 1 = 524287 is a Mersenne prime
+# 2^31 - 1 = 2147483647 is a Mersenne prime
+#
+
+# Function to check if a number is prime
+is_prime() {
+    local i
+
+    if (( $1 <= 1 ))
+    then
+        return 1
+    fi
+
+    for(( i=2; i*i <= ${1}; i++ ))
+    do
+        if (( $1 % i == 0 ))
+        then
+            return 1
+        fi
+    done
+
+    return 0
+}
+
+if (( $# < 1 ))
+then
+    echo ""Usage: $0 <number_of_mersenne_primes>"" >&2
+    exit 1
+fi
+
+# Initialize counter and Mersenne prime count
+n=0
+mersenne_primes=0
+
+# Loop through numbers starting from 2
+while (( mersenne_primes < $1 ))
+do
+    # Calculate Mersenne number
+    mersenne=$(( $(echo ""2^$n"" | bc) -1))
+
+    # Check if Mersenne number is prime
+    if is_prime $mersenne
+    then
+        echo ""2^$n - 1 = $mersenne is a Mersenne prime""
+        mersenne_primes=$((mersenne_primes + 1))
+    fi
+
+    # Increment counter
+    n=$((n + 1))
+done"
+What is the bash script which outputs the square root of two after four iterations of the Newton-Raphson method using its argument as the initial guess?,"#!/bin/bash
+
+# Initialize variables
+x=2
+g=$1
+iterations=4
+
+echo ""Iteration 1: $g""
+
+for ((i=2; i<=iterations; i++)); do
+  g=$(echo ""($g + $x / $g) / 2"" | bc -l)
+  #echo ""Iteration $i: $g""
+done
+
+echo ""The square root of two is approximately $g"""
+What is the bash script that outputs the first n prime numbers where n is given as its input argument?,"#!/bin/bash
+#
+# Write a bash script to output the first n prime numbers where n is given as its input argument.
+#
+
+# Initialize a counter for the number of primes found
+count=0
+
+# Initialize the first prime number
+n=2
+
+# Loop until we have found 100 prime numbers
+while [ $count -lt $1 ]
+do
+  # Use the factor command to check if the number is prime
+  if factor $n | grep -q ""^$n: $n$""
+  then
+    # If the number is prime, increment the counter and print it
+    count=$((count + 1))
+    echo $n
+  fi
+
+  # Increment the number to check
+  n=$((n + 1))
+done"
+What is the bash script which finds the median of the values in numbers.txt?,"#!/bin/bash
+#
+# 0 1 2 3  4  5  6  7  8  9  10 11 12 13 14
+# 3 5 7 12 13 14 21 23 23 23 23 29 40 56
+#
+# (21+23)/2 --> 22
+#
+
+# Sort and load the values from median.txt into an array
+mapfile -t sorted <<< ""$(sort -n numbers.txt)""
+#sorted=$(sort -n numbers.txt | (mapfile -t list; echo ${list[@]}))
+
+# Calculate the length of the sorted array
+n=${#sorted[@]}
+
+# Calculate the middle index of the sorted array
+middle=$(( n / 2 ))
+
+# If the length of the sorted array is even, calculate the average of the two middle values
+if (( n % 2 == 0 )); then
+  median=$(( (sorted[middle-1] + sorted[middle]) / 2 ))
+else
+  # Otherwise, just output the middle value
+  median=${sorted[middle]}
+fi
+
+# Output the median value
+echo ""$median"""
+What is the bash script which outputs the Levenshtein distance between two strings given as arguments?,"#!/bin/bash
+#
+# Write a bash script which outputs the Levenshtein distance between two strings given as arguments.
+# Write a bash script which computes the Levenshtein distance between to strings.
+#
+
+# Usage: ./levenshtein.sh string1 string2
+
+function min() {
+    local m=$1
+    shift
+    while(( $# ))
+    do
+        m=$(( $m < $1 ? $m : $1 ))
+        shift
+    done
+
+    echo $m
+}
+
+string1=$1
+string2=$2
+
+len1=${#string1}
+len2=${#string2}
+
+declare -A matrix
+
+for ((i=0; i<=$len1; i++))
+do
+    matrix[$i,0]=$i
+done
+
+for ((j=0; j<=$len2; j++))
+do
+    matrix[0,$j]=$j
+done
+
+for ((i=1; i<=$len1; i++))
+do
+    for ((j=1; j<=$len2; j++))
+    do
+        if [[ ${string1:i-1:1} == ${string2:j-1:1} ]]
+        then
+            cost=0
+        else
+            cost=1
+        fi
+        x=$(( i-1 ))
+        y=$(( j-1 ))
+        matrix[$i,$j]=$(min matrix[$x,$j]+1 matrix[$i,$y]+1 matrix[$x,$y]+$cost)
+#        echo ""matrix[$i,$j]="" $((matrix[$i,$j])) "" (cost=$cost)""
+    done
+#    for(( j=0; j<$len2; j++ ))
+#    do
+#        printf ""matrix[%d,%d]=%d\n"" $i $j ${matrix[$i,$j]}
+#    done
+done
+
+echo ${matrix[$len1,$len2]}"
+What is the bash script that uses a binary search to find its argument in the file list.txt and prints the number of the matching line?,"#!/bin/bash
+#
+# Write a bash script that uses a binary search to find its argument in the file list.txt and print the number of the matching line.
+#
+
+binary_search() {
+    local start=$1
+    local end=$2
+    local mid=$(( (start + end) / 2 ))
+    local target=$3
+
+    if [ $start -gt $end ]; then
+        echo -1
+        return
+    fi
+
+    #printf ""start=%d, mid=%d, end=%d\n"" $start $mid $end
+
+    line=$(sed -n ""${mid}p"" list.txt)
+    if [ ""$target"" = ""$line"" ]
+    then
+        echo $mid
+        return
+    fi
+
+    if [ ""$target"" -lt ""$line"" ]
+    then
+        binary_search $start $((mid - 1)) $target
+    else
+        binary_search $((mid + 1)) $end $target
+    fi
+}
+
+if [ $# -ne 1 ]; then
+    echo ""Usage: $0 <list>""
+    exit 1
+fi
+
+result=$(binary_search 1 $(cat list.txt | wc -l | awk '{print $1}') $1)
+
+if [ $result -eq -1 ]; then
+    echo ""$1 not found""
+else
+    echo ""$1 found on line: $result""
+fi"
+What is the bash script to output the number of prime numbers between its two arguments?,"#!/bin/bash
+
+# Function to check if a number is prime
+is_prime() {
+    local n=$1
+    local i
+    if (( n == 2 ))
+    then
+        return 0
+    elif (( n < 2  ||  n % 2 == 0 ))
+    then
+        return 1
+    fi
+
+    for (( i=3; i*i <= n; i+=2 ))
+    do
+        if (( n % i == 0 ))
+        then
+            return 1
+        fi
+    done
+
+    return 0
+}
+
+# Initialize counter for prime numbers
+count=0
+
+m=$1
+n=$2
+
+for (( i=m; i<=n; i++ ))
+do
+    # Check if the number is prime
+    if is_prime $i
+    then
+        # Increment counter if it's prime
+        echo $i
+        count=$((count + 1))
+    fi
+done
+
+# Print the result
+echo ""There are $count prime numbers between $m and $n."""
+What is the bash script that finds all the twin primes between its two input arguments?,"#!/bin/bash
+#
+# A twin prime is a prime number that is either 2 less or 2 more than another prime number—for example, the pair (3, 5), (5, 7), and (11, 13) are twin primes.
+
+# Function to check if a number is prime
+is_prime() {
+  local n=$1
+  local i
+  if (( $n <= 1 ))
+  then
+    return 1
+  fi
+  for (( i=2; i*i <= ${1}; i++ ))
+  do
+    if (( $n % i == 0 ))
+    then
+      return 1
+    fi
+  done
+  return 0
+}
+
+# Check if input arguments are provided
+if (( $# < 2 ))
+then
+    echo ""Usage: $0 <start> <end>""
+    exit 1
+fi
+
+for (( i=$1; i<=$2; i++ ))
+do
+    if is_prime $i
+    then
+        j=$(( $i + 2 ))
+
+        if is_prime $j
+        then
+            echo ""$i $j""
+        fi
+    fi
+done"
+What is the bash script that outputs the nth Fibonacci number where n is passed as an argument?,"#!/bin/bash
+#
+# Write a bash script to output the nth Fibonacci number where n is passed as an argument.
+# Write a bash script which takes an argument n and finds the nth Fibonacci number.
+#
+# 1 1
+#
+# 10 55
+#
+# 25 75025
+#
+# 50 12586269025
+
+if [ -z ""$1"" ]
+then
+    echo ""Usage: $0 <n>""
+    exit 1
+fi
+
+n=$1
+
+if [ ""$n"" -lt 1 ]
+then
+    echo ""Error: n must be a positive integer.""
+    exit 1
+fi
+
+# Initialize the first two Fibonacci numbers
+a=0
+b=1
+
+# Calculate the nth Fibonacci number
+for ((i=2; i<=$n; i++))
+do
+    c=$((a+b))
+    a=$b
+    b=$c
+done
+
+echo ""The $nth Fibonacci number is $b"""
+What is the bash script which outputs the Luhn check digit for its input argument?,"#!/bin/bash
+#
+# luhn 1789372997 is 4
+# luhn 49015420323751 is 8
+# luhn 4512345678901234 is 9
+# luhn 1234567 is 4
+# luhn 872560021439746445 is 9
+# luhn 601178865689998 is 0
+# luhn 4532015264668453 is 7
+
+luhn() {
+    local num=$1
+    local len=${#1}
+    local result=0
+
+    for (( i=$len-1; i>=0; i-=2 )); do
+        double=$(( (num % 10) * 2 ))
+        num=$((num / 10))
+        if (( double > 9 )); then
+            double=$((double - 9))
+        fi
+        #echo $double
+        result=$(( result + double ))
+        result=$(( result + (num % 10) ))
+        #echo $(( num % 10 ))
+        num=$((num / 10))
+    done
+
+    #echo $result
+    echo $(( (10 - result % 10) % 10 ))
+}
+
+echo Check digit is $(luhn $1)"
+What is the bash script which outputs the Burrows-Wheeler transform of its argument string?,"#!/bin/bash
+#
+# Mississippi
+# ipssm$pissii
+#
+# Bookkeeper
+# r$kepkoobee
+#
+# Accommodation
+# n$dacotomomcia
+#
+
+# Function to compute the Burrows-Wheeler Transform
+bwt() {
+    local input=""$1""""$""
+    local len=${#input}
+    local rotations=()
+
+    # Generate all rotations of the input string
+    for (( i=0; i<len; i++ )); do
+        rotations+=(""${input:i}${input:0:i}"")
+    done
+
+    # Sort the rotations lexicographically
+    IFS=$'\n' sorted=($(sort -s <<<""${rotations[*]}""))
+    unset IFS
+
+    # Extract the last column of the sorted rotations
+    local bwt_result=""""
+    for rotation in ""${sorted[@]}""; do
+        bwt_result+=""${rotation: -1}""
+    done
+
+    echo ""$bwt_result""
+}
+
+# Check if an argument is provided
+if [ -z ""$1"" ]; then
+    echo ""Usage: $0 <string>""
+    exit 1
+fi
+
+bwt ""$1"""
+What is the bash script that outputs the inverse Burrows-Wheeler transform of its input argument?,"#!/bin/bash
+#
+# mississippi
+# 'ipssm$pissii'
+#
+# bookkeeper
+# 'r$kepkoobee'
+#
+# accommodation
+# 'n$dacotomomcia'
+#
+
+# Function to perform inverse Burrows-Wheeler transform
+ibwt() {
+    local bwt=""$1""      # $(echo ""$1"" | sed -e 's+\$+\\$+g')
+    local len=${#bwt}
+    local rotations=()
+    local original_str=""""
+
+    for(( i=0; i<len; i++ ))
+    do
+        rotations[$i]=${bwt:i:1}
+    done
+
+    for(( j=0; j<len-1; j++ ))
+    do
+        IFS=$'\n' rotations=($(sort -s <<<""${rotations[*]}""))
+        unset IFS
+
+        for(( i=0; i<len; i++ ))
+        do
+            rotations[$i]=${bwt:i:1}${rotations[i]}
+        done
+    done
+
+    IFS=$'\n' rotations=($(sort -s <<<""${rotations[*]}""))
+    unset IFS
+
+    for(( i=0; i<len; i++ ))
+    do
+        if [[ ""${rotations[i]: -1}"" == ""$"" ]]; then
+            #answer=""${rotations%$}""
+            answer=""${rotations[i]%$}""
+        fi
+    done
+
+    echo Answer: $answer
+}
+
+# Check if an argument is provided
+if [ -z ""$1"" ]; then
+    echo ""Usage: $0 <bwt_string>""
+    exit 1
+fi
+
+ibwt $1"
+What is the bash script which converts its argument from base 7 to base 3?,"#!/bin/bash
+#
+#  66666 212001110
+# 100000 212001111
+# 111245 222222222
+# 666666 12222101100
+#
+
+# Function to convert a number from base 7 to base 3
+base7_to_base3() {
+    local num=$1
+    local result=""""
+    local remainder=0
+
+    # Check if the input is a valid base 7 number
+    if ! [[ $num =~ ^[0-6]+$ ]]; then
+        echo ""Error: Invalid base 7 number""
+        return 1
+    fi
+
+    # Convert from base 7 to decimal
+    local decimal=0
+    local power=0
+    for ((i=${#num}-1; i>=0; i--)); do
+        decimal=$((decimal + ${num:i:1} * (7 ** power)))
+        power=$((power + 1))
+    done
+
+    # Convert from decimal to base 3
+    while [ $decimal -gt 0 ]; do
+        remainder=$((decimal % 3))
+        result=""${remainder}${result}""
+        decimal=$((decimal / 3))
+    done
+
+    echo ""${result:-0}""
+}
+
+# Check if an argument is provided
+if [ $# -eq 0 ]; then
+    echo ""Usage: $0 <base7_number>""
+    exit 1
+fi
+
+# Call the conversion function
+base7_to_base3 ""$1"""
+What is the bash script which computes the Hamming weight of its argument given as a decimal number?,"#!/bin/bash
+
+# Function to compute Hamming weight
+hamming_weight() {
+    local num=$1
+    local weight=0
+
+    # Convert decimal to binary
+    local binary=$(echo ""obase=2; $num"" | bc)
+
+    # Count set bits
+    for ((i=0; i<${#binary}; i++)); do
+        if [ ""${binary:$i:1}"" == ""1"" ]; then
+            ((weight++))
+        fi
+    done
+
+    echo $weight
+}
+
+# Check if a number is provided
+if [ -z ""$1"" ]; then
+    echo ""Usage: $0 <decimal_number>""
+    exit 1
+fi
+
+# Compute Hamming weight
+result=$(hamming_weight ""$1"")
+echo ""Hamming weight of $1 is $result"""
+What is the bash script that outputs the Julian Day Number of the date given as an argument in yyyy-mm-dd format?,"#!/bin/bash
+#
+# Write a bash script to output the Julian Day Number of its argument which is in yyyy-mm-dd format.
+#
+# -4712 January 1
+# 1582-oct-5 thru 1582-oct-14 are missing
+#
+# JDN = (1461 × (Y + 4800 + (M − 14)/12))/4 + (367 × (M − 2 − 12 × ((M − 14)/12)))/12 − (3 × ((Y + 4900 + (M - 14)/12)/100))/4 + D − 32075
+#
+# 153 comes from starting in March and lumping 5 months together: 31+30+31+30+31
+# 1461 comes from four-year leap-cycle: 4*365+1
+#
+# JDN =
+#   (1461 * (Y + 4800 + (M − 14)/12))/4 +
+#   (367 * (M − 2 − 12 * ((M − 14)/12)))/12 −
+#   (3 * ((Y + 4900 + (M - 14)/12)/100))/4 +
+#   D − 32075
+#
+#   A = (M-14)/12  produces -1 for Jan and Feb; zero otherwise
+#
+#          A  M-2-12*A  367*B/12
+#   Jan   -1    11        336 31
+#   Feb   -1    12        367 31
+#   Mar    0     1         30
+#   Apr    0     2         61 31
+#   May    0     3         91 30
+#   Jun    0     4        122 31
+#   Jul    0     5        152 30
+#   Aug    0     6        183 31
+#   Sep    0     7        214 31
+#   Oct    0     8        244 30
+#   Nov    0     9        275 31
+#   Dec    0    10        305 30
+#
+# JDN =
+#   (1461 * (Y+A + 4800))/4 +      leap-year cycles times days in leap-year cycle
+#   (367 * (M − 2 − 12*A))/12 −    days from 1-Mar to date
+#   (3 * ((Y+A + 4900)/100))/4 +   Gregory's leap-century adjustment every 400 years?
+#   D − 32075                      day of the month minus serious adjustment
+#
+#
+# 2000-02-29 2451604 *
+# 2016-02-29 2457448 *
+# 2024-06-14 2460476 *
+# 1582-10-15 2299161 *
+#
+
+jdn() {
+    local Y=$1
+    local M=$2
+    local D=$3
+    echo $(( (1461 * (Y + 4800 + (M - 14)/12))/4 + (367 * (M - 2 - 12 * ((M - 14)/12)))/12 - (3 * ((Y + 4900 + (M - 14)/12)/100))/4 + D - 32075 ))
+}
+
+# This one is sometimes high by one day
+kdn() {
+    local Y=$1
+    local M=$2
+    local D=$3
+    A=$(( Y / 100 ))
+    B=$(( A / 4 ))
+    C=$(( 2 - A + B ))
+    E=$(( 365*(Y+4716) + (Y+4716)/4 ))       # 365.25 * (Y+4716)
+    F=$(( 30*(M+1) + 6001*(M+1)/10000 ))     # 30.6001*(M+1)
+    echo $(( C + D + E + F - 1524 -1 ))
+}
+
+ldn() {
+    local Y=$1
+    local M=$2
+    local D=$3
+    echo $(( D + (153*M+2)/5 +365*Y + Y/4 - Y/100 + Y/400 - 32045 ))
+}
+
+if [ $# -ne 1 ]; then
+    echo ""Usage: $0 yyyy-mm-dd""
+    exit 1
+fi
+
+if ! [[ $1 =~ ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$ ]]; then
+    echo ""Invalid date format: $1""
+    exit 1
+fi
+
+IFS='-' read -r y m d <<< ""$1""
+jdn $y $m $d
+
+#kdn $(( y - 1 )) $(( m + 12 )) $d"
+What is the bash script which outputs the ordinal date (yyddd) for the date given as an argument in yyyy-mm-dd format?,"#!/bin/bash
+#
+# Write a bash script which outputs the ordinal date (yyddd) for its command line argument given as yyyy-mm-dd.
+#
+# Ordinal date
+#
+
+if [[ $# -ne 1 ]]; then
+    echo ""Usage: $0 yyyy-mm-dd""
+    exit 1
+fi
+
+date=$1
+
+if ! date -d ""$date"" > /dev/null 2>&1; then
+    echo ""Invalid date""
+    exit 1
+fi
+
+ordinal_date=$(date -d ""$date"" +%y%j)
+echo ""$ordinal_date"""
+What is the bash script which outputs the prime factors of its input argument?,"#!/bin/bash
+
+function is_prime() {
+    local num=$1
+    local i
+    if (( num < 2 )); then
+        return 1
+    fi
+    for (( i=2; i*i <= num; i++ ))
+    do
+        if (( num % i == 0 ))
+        then
+            return 1
+        fi
+    done
+    return 0
+}
+
+function prime_factors() {
+    local num=$1
+    local i=2
+    while (( i*i <= num ))
+    do
+        if is_prime $i
+        then
+            while (( num % i == 0 ))
+            do
+                echo $i
+                num=$(( num / i ))
+            done
+        fi
+        (( i++ ))
+    done
+
+    if (( num > 1 ))
+    then
+        echo $num
+    fi
+}
+
+if (( $# != 1 ))
+then
+    echo ""Usage: $0 <positive integer>""
+    exit 1
+fi
+
+if ! [[ $1 =~ ^[0-9]+$ ]]
+then
+    echo ""Error: argument must be a positive integer""
+    exit 1
+fi
+
+prime_factors $1"
+What is the bash script which finds all the prime Fibonacci numbers that are less than its input argument?,"#!/bin/bash
+
+function is_prime {
+    local n=$1
+    local i=2
+
+    if (( n < 2 ))
+    then
+        return 1
+    fi
+
+    while (( i*i <= n ))
+    do
+        if (( n % i == 0 ))
+        then
+            return 1
+        fi
+        i=$(( i + 1 ))
+    done
+
+    return 0
+}
+
+
+limit=$1
+f0=0
+f1=1
+
+while (( (f0+f1) < limit ))
+do
+    f=$(( f0 + f1 ))
+    if is_prime $f
+    then
+        echo $f
+    fi
+    f0=$f1
+    f1=$f
+done"
+"What is the bash script that outputs ""true"" if the number given as its argument is a palindrome; otherwise, it outputs ""false""?","#!/bin/bash
+
+# Check if the number is a palindrome
+is_palindrome() {
+    local num=$1
+    local reverse=0
+    local temp=$num
+
+    while [ $temp -gt 0 ]; do
+        local digit=$((temp % 10))
+        reverse=$((reverse * 10 + digit))
+        temp=$((temp / 10))
+    done
+
+    if [ $num -eq $reverse ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Check if the argument is provided
+if [ -z ""$1"" ]; then
+    echo ""Please provide a number as an argument.""
+    exit 1
+fi
+
+# Check if the argument is a number
+if ! [[ $1 =~ ^[0-9]+$ ]]; then
+    echo ""The argument must be a number.""
+    exit 1
+fi
+
+# Call the is_palindrome function
+is_palindrome $1
+
+# Check the exit status of the function
+if [ $? -eq 0 ]; then
+    echo ""The number is a palindrome.""
+    exit 0
+else
+    echo ""The number is not a palindrome.""
+    exit 1
+fi"
+What is the bash script that finds the first palindromic prime greater than its argument?,"#!/bin/bash
+
+is_prime() {
+    local num=$1
+    local i
+    if (( num <= 1 ))
+    then
+        return 1
+    fi
+
+    for(( i=2; i*i<=num; i++ ))
+    do
+        if(( num % i == 0 ))
+        then
+            return 1
+        fi
+    done
+    return 0
+}
+
+reverse_number() {
+    local num=$1
+    local r=0
+    while (( $num > 0 ))
+    do
+        r=$(( $r * 10 + $num % 10 ))
+        num=$(( $num/10 ))
+    done
+    echo $r
+}
+
+n=$1
+for(( i=n+1; ; i++ ))
+do
+    if is_prime $i
+    then
+        #echo Trying $i
+        r=$(reverse_number $i)
+        #echo Reversed $r
+        if (( $i == $r ))
+        then
+            echo ""First palindromic prime greater than $n: $i""
+            break
+        fi
+    fi
+done"
+What is the bash script that outputs the first n perfect numbers where n is the argument to the script?,"#!/bin/bash
+#
+# sum of the factors equals the number
+#  - ALL factors
+#  - factor doesn't have to be prime
+#  - 28 = 1 + 2 + 4 + 7 + 14
+#
+count=$1
+num=1
+sum=0
+
+# if it divides, it adds
+while(( count > 0 ))
+do
+    for (( i=1; i<=num/2; i++ ))
+    do
+        if (( num % i == 0 ))
+        then
+            sum=$((sum+i))
+            if (( sum > num ))
+            then
+                break
+            fi
+        fi
+    done
+
+    if (( sum == num ))
+    then
+        echo ""Perfect number: $num""
+        count=$((count-1))
+    fi
+
+    sum=0
+    num=$((num+1))
+done"
+What is the bash script that finds the first perfect number greater than its input argument?,"#!/bin/bash
+
+# Function to check if a number is perfect
+is_perfect() {
+    local sum=0
+    local n=$1
+    local i
+    for (( i=1; i<=n/2; i++ ))
+    do
+        if (( n % i == 0 ))
+        then
+            sum=$(( sum + i ))
+            if (( sum > n ))
+            then
+                return 1
+            fi
+        fi
+    done
+    (( sum == n ))
+}
+
+# Check if the argument is a positive integer
+if ! [[ $1 =~ ^[1-9][0-9]*$ ]]; then
+    echo ""Usage: $0 <positive integer>""
+    exit 1
+fi
+
+
+# Loop until we find a perfect number
+for (( i=$1+1; ; i++ ))
+do
+    # Check if the current number is perfect
+    if $(is_perfect $i)
+    then
+        break
+    fi
+done
+
+# Print the perfect numbers
+echo ""The first perfect number greater than $1 is $i"""
+What is the bash script which outputs each base between 2 and 16 where its input argument is a palindrome when expressed in that base?,"#!/bin/bash
+#
+# ./bash.sh 121
+# 3: 11111  11111
+# 7: 232  232
+# 8: 171  171
+# 10: 121  121
+#
+# ./bash.sh 1911
+# 2: 11101110111  11101110111
+# 16: 777  777
+#
+# ./bash.sh 1991
+# 10: 1991  1991
+# 16: 7C7  7C7
+#
+# ./bash.sh 1913
+# 3: 2121212  2121212
+# 14: 9A9  9A9
+# 15: 878  878
+#
+# ./bash.sh 1921
+# 6: 12521  12521
+#
+
+# Function to convert a number to a given base
+function convert_to_base() {
+    local num=$1
+    local base=$2
+    local digits=""0123456789ABCDEF""
+    local out=""""
+
+    while [ $num -gt 0 ]; do
+        local rem=$(( $num % $base ))
+        out=""${digits:$rem:1}$out""
+        num=$(( $num / $base ))
+    done
+
+    echo ""$out""
+}
+
+# Function to check if a number is a palindrome in a given base
+function is_palindrome() {
+    local num=$1
+    local base=$2
+    local digits=""0123456789ABCDEF""
+
+    local num_str=$(convert_to_base ""$num"" ""$base"")
+    local len=${#num_str}
+
+    for (( i = 0; i < len / 2; i++ )); do
+        if [ ""${num_str:$i:1}"" != ""${num_str:$(( len - i - 1 )):1}"" ]; then
+            return 1
+        fi
+    done
+
+    return 0
+}
+
+# Check if the input argument is a positive integer
+if ! [[ $1 =~ ^[0-9]+$ ]] || [ $1 -lt 0 ]; then
+    echo ""Error: Input argument must be a positive integer.""
+    exit 1
+fi
+
+# Check each base from 2 to 16
+for base in $(seq 2 16); do
+    # Check if the number is a palindrome in this base
+    if is_palindrome ""$1"" ""$base""; then
+        # Convert the number to this base and print the result
+        converted=$(convert_to_base ""$1"" ""$base"")
+        #echo ""$base: $converted "" $(echo ""obase=$base; ibase=10; $1"" | bc)
+        echo ""$base: $converted""
+    fi
+done"
+"What is the bash script that finds the first number greater than its argument which is a palindrome in base 2, base 8, and base 16?","#!/bin/bash
+
+# Function to check if a number is a palindrome in a given base
+is_palindrome() {
+    local n=$1
+    local r
+
+    r=$(echo $n | rev)
+    if [ ""$n"" == ""$r"" ]
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Find the first number which is a palindrome in base 2, base 8, and base 16
+for (( num=$1; ; num++ ))
+do
+    # Check if the number is a palindrome in base 2
+    b2=$(echo ""obase=2; ibase=10; $num"" | bc)
+    if $(is_palindrome $b2)
+    then
+        # Check if the number is a palindrome in base 8
+        b8=$(echo ""obase=8; ibase=10; $num"" | bc)
+        if $(is_palindrome $b8)
+        then
+            # Check if the number is a palindrome in base 16
+            b16=$(echo ""obase=16; ibase=10; $num"" | bc)
+            if $(is_palindrome $b16)
+            then
+                echo ""The first number which is a palindrome in base 2, base 8, and base 16 is $num""
+                echo ""base2:  $b2""
+                echo ""base8:  $b8""
+                echo ""base16: $b16""
+                break
+            fi
+        fi
+    fi
+done"
+What is the bash script that counts the number of palindromic prime numbers less than its argument?,"#!/bin/bash
+
+function is_prime {
+    local n=$1
+    local i
+
+    if (( n == 2 ))
+    then
+        return 0
+    fi
+
+    if (( n < 2  ||  n % 2 == 0 ))
+    then
+        return 1
+    fi
+
+    for(( i=3; i*i<=n; i+=2 ))
+    do
+        if (( n % i == 0 ))
+        then
+            return 1
+        fi
+    done
+
+    return 0
+}
+
+function is_palindromic() {
+    local n=$1
+    local r=$(echo $n | rev)
+    (( n == r ))
+}
+
+
+limit=$1
+count=0
+for(( n=2; n<limit; n++ ))
+do
+    if is_prime $n
+    then
+        if is_palindromic $n
+        then
+            #echo >&2 $n
+            count=$((count+1))
+        fi
+    fi
+done
+echo $count"
+What is the bash script which finds a palindrome less than its argument that is the product of three consecutive prime numbers?,"#!/bin/bash
+#
+# 1001 is the product of 7, 11, 13
+#
+
+# Function to check if a number is prime
+is_prime() {
+    local n=$1
+    local i
+    if (( n < 2 ))
+    then
+        return 1
+    fi
+    for (( i=2; i*i <= n; i++ ))
+    do
+        if (( n % i == 0 ))
+        then
+            return 1
+        fi
+    done
+    return 0
+}
+
+# Function to check if a number is palindrome
+is_palindrome() {
+    local n=$1
+    local r=$(echo $n | rev)
+    (( n == r ))
+}
+
+# Initialize variables
+p1=2
+p2=3
+p3=3
+limit=$1
+
+# Loop through consecutive prime numbers
+for(( p3=p3+2; p1*p2*p3 < limit; p3=p3+2 ))
+do
+    if ! is_prime $p3
+    then
+        continue
+    fi
+
+    product=$(( p1 * p2 * p3 ))
+
+    # Check if the product is a palindrome
+    if is_palindrome $product
+    then
+        echo $product is a palindrome and the product of $p1, $p2, and $p3
+        break
+    fi
+
+    p1=$p2
+    p2=$p3
+done"
+What is the bash script which counts all Fibonacci numbers less than its argument which are palindromes?,"#!/bin/bash
+#
+# 0,1,1,2,3,5,8,13,21,34,
+#
+
+is_palindrome() {
+    local n=$1
+    local r=$(echo $n | rev)
+    (( n == r ))
+}
+
+# Initialize variables
+fib0=0
+fib1=1
+fib=$fib0
+count=0
+limit=$1
+
+# Loop until next is less than 100
+while (( fib < limit ))
+do
+    # Check if next is a palindrome
+    if is_palindrome $fib
+    then
+        echo $fib
+        count=$((count + 1))
+    fi
+
+    # Update variables
+    fib0=$fib1
+    fib1=$fib
+    fib=$(( fib0 + fib1 ))
+done
+
+# Print result
+echo $count"
+What is the bash script that finds the smallest number where the sum of its digits is equal to the argument to the script?,"#!/bin/bash
+
+# Function to calculate sum of digits of a number
+sum_of_digits() {
+    local num=$1
+    local sum=0
+    while [ $num -gt 0 ]; do
+        sum=$((sum + (num % 10)))
+        num=$((num / 10))
+    done
+    echo $sum
+}
+
+# Function to find the smallest number
+find_smallest() {
+    local target=$1
+    local num=0
+    while true; do
+        if [ $(sum_of_digits $num) -eq $target ]; then
+            echo $num
+            return
+        fi
+        num=$((num + 1))
+    done
+}
+
+# Check if argument is provided
+if [ $# -ne 1 ]; then
+    echo ""Usage: $0 <target_sum>""
+    exit 1
+fi
+
+# Call the function to find the smallest number
+find_smallest $1"
+What is the bash script which outputs the least common multiple of its two input arguments?,"#!/usr/bin/env bash
+
+gcd() {
+    local a=$1
+    local b=$2
+    while (( b ))
+    do
+        local t=$b
+        b=$(( a % b ))
+        a=$t
+    done
+    echo $a
+}
+
+lcm() {
+    local a=$1
+    local b=$2
+    echo $(( (a * b) / $(gcd $a $b) ))
+}
+
+lcm $1 $2"
+What is the bash script which finds all numbers less than its input argument that are equal to the sum of the factorial of each of its digits?,"#!/bin/bash
+#
+# A Krishnamurthy number is a number whose sum of the factorial of digits is equal
+# to the number itself.
+#
+# For example, 145 is the sum of the factorial of each digit.
+# 1! + 4! + 5! = 1 + 24 + 120 = 145
+#
+
+factorial() {
+    local n=$1
+    local result=1
+    for (( i=2; i<=n; i++ )); do
+        result=$(( result * i ))
+    done
+    echo $result
+}
+
+for (( i=1; i<200; i++ )); do
+    sum=0
+    number=$i
+    while (( $number > 0 )); do
+        digit=$(( $number % 10 ))
+        sum=$(( sum + $(factorial $digit) ))
+        number=$(( $number / 10 ))
+    done
+    if (( $i == $sum )); then
+        echo -n $i"" ""
+    fi
+done
+echo"
+What is the bash script which finds two consecutive prime numbers less than its argument such that both their sum and product are palindromes?,"#!/bin/bash
+
+is_prime() {
+    local num=$1
+    local i
+    if (( num < 2 ))
+    then
+        return 1
+    fi
+    for(( i=2; i*i <= num; i++ ))
+    do
+        if (( num % i == 0 ))
+        then
+            return 1
+        fi
+    done
+    return 0
+}
+
+is_palindrome() {
+    local n=$1
+    local r=$(echo $n | rev)
+    if [ ""$n"" == ""$r"" ]
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
+limit=$1
+i=2
+for(( j=3; j<limit; j+=2 ))
+do
+    if is_prime $j
+    then
+        sum=$(( i + j ))
+        prod=$(( i * j ))
+        if is_palindrome $sum && is_palindrome $prod
+        then
+            echo ""$i $j""
+        fi
+        i=$j
+    fi
+done"
+What is the bash script that finds all circular primes between its two arguments?,"#!/bin/bash
+#
+# bash.sh 100 900
+#
+
+# Function to check if a number is prime
+is_prime() {
+    local n=$1
+    local i
+    if (( n == 2 ))
+    then
+        return 0
+    fi
+    if (( n < 2  ||  n % 2 == 0 ))
+    then
+        return 1
+    fi
+    for(( i=3; i*i<=n; i+=2 ))
+    do
+        if (( n % i == 0 ))
+        then
+            return 1
+        fi
+    done
+    return 0
+}
+
+# Function to rotate the digits of a number
+rotate() {
+    local num=$1
+    local last_digit=$(( num % 10 ))
+    local rotated=$(( num / 10 ))
+    #echo >&2 -n ""$num --> ""
+    while (( rotated > 0 )); do
+        rotated=$(( rotated / 10 ))
+        last_digit=$(( last_digit * 10 ))
+    done
+    num=$(( last_digit + num / 10 ))
+    #echo >&2 ""$num""
+    echo $num
+}
+
+start=$1
+limit=$2
+
+# Find all circular primes between 100 and 1000
+for (( i=start; i<=limit; i++ ))
+do
+    if is_prime $i
+    then
+        is_circular_prime=1
+        for (( r=$(rotate $i); r!=i; r=$(rotate $r) ))
+        do
+            if ! is_prime $r
+            then
+                is_circular_prime=0
+                break
+            fi
+        done
+        if (( is_circular_prime == 1 ))
+        then
+            echo $i
+        fi
+    fi
+done"
+"What is the bash script that tests the possible primality of its argument using Fermat's test implemented using a fast, modular exponentiation function and outputs true if it passes the test or false if it does not?","#!/bin/bash
+#
+
+# Function to calculate power
+function mexp() {
+    local b=$1
+    local e=$2
+    local m=$3
+    local c=1
+
+    #echo >&2 ""mexp $b^$e mod $m""
+
+    # (a*b) % m = (a % m) * (b % m)
+    # b^(2*e+1) % m = (b^(2*e) % m) * (b % m)
+    # b^(2*e) % m = (b^2)^e % m = ((b^2) % m)^e
+    while (( e > 0 ))
+    do
+        if (( e % 2 == 1 ))
+        then
+            c=$(( (c*b) % m ))
+        fi
+        e=$(( e/2 ))
+        b=$(( (b*b) % m ))
+    done
+
+    echo $c
+}
+
+
+# Function to check primality using Fermat's primality test
+fermat_test() {
+    local n=$1
+    local a
+    local r
+    for (( a=2; a<n-1; a++ ))
+    do
+        r=$(mexp $a $((n-1)) $n)
+        if (( r != 1 ))
+        then
+            #echo >&2 ""mexp $a $((n-1)) $n --> $r""
+            return 1
+        fi
+    done
+    return 0
+}
+
+# Check if argument is provided
+if [ -z ""$1"" ]
+then
+    echo ""Usage: $0 <number>""
+    exit 1
+fi
+
+# Check if the number is greater than 1
+if [ ""$1"" -le 1 ]
+then
+    echo ""Number should be greater than 1""
+    exit 1
+fi
+
+# Perform Fermat's primality test
+fermat_test $1
+
+# Print result
+if [ $? -eq 0 ]
+then
+    echo true  # probably prime
+else
+    echo false  # not prime
+fi"
+"What is the bash script that does fast, modular exponentiation where the first argument is the base, the second argument is the exponent and the third argument is the modulus?","#!/bin/bash
+
+#
+# Asking for c where c = b^e mod m
+#
+
+#
+# (a * b) mod m = ( (a mod m)* (b mod m) ) mod m
+#
+function mexp() {
+    local b=$1
+    local e=$2
+    local m=$3
+
+    c=1
+
+    while (( e > 0 ))
+    do
+        if (( e % 2 == 1 ))
+        then
+            c=$(( (b*c) % m ))
+        fi
+        e=$(( e/2 ))
+        b=$(( (b*b) % m ))
+    done
+
+    echo $c
+}
+
+b=$1
+e=$2
+m=$3
+
+c=$(mexp $b $e $m)
+echo ""$c = $b^$e mod $m"""
+What is the bash script which outputs all Carmichael numbers less than its argument?,"#!/bin/bash
+
+function gcd() {
+    local a=$1
+    local b=$2
+    while (( $a != $b ))
+    do
+        if (( $a > $b ))
+        then
+            a=$(( a - b ))
+        else
+            b=$(( b - a ))
+        fi
+    done
+    echo $a
+}
+
+# Function to calculate power
+function mexp() {
+    local b=$1
+    local e=$2
+    local m=$3
+    local c=1
+
+    #echo >&2 ""mexp $b $e $m""
+
+    # (a*b) mod m = (a mod m) * (b mod m)
+    # b^(2*e+1) mod m = (b^(2*e) mod m) * (b mod m)
+    while (( e > 0 ))
+    do
+        if (( e % 2 == 1 ))
+        then
+            c=$(( (b*c) % m ))
+        fi
+        e=$(( e/2 ))
+        b=$(( (b*b) % m ))
+    done
+
+    echo $c
+}
+
+function is_prime {
+    local n=$1
+    local i
+
+    if (( n == 2 ))
+    then
+        return 0
+    fi
+
+    if (( n < 2  ||  n % 2 == 0 ))
+    then
+        return 1
+    fi
+
+    for(( i=3; i*i<=n; i+=2 ))
+    do
+        if (( n % i == 0 ))
+        then
+            return 1
+        fi
+    done
+
+    return 0
+}
+
+
+function is_carmichael() {
+    local n=$1
+    local a
+
+    # weed out the primes
+    if is_prime $n
+    then
+        #echo >&2 ""$n is prime""
+        return 1
+    fi
+
+    for (( a=2; a<n; a++ ))
+    do
+        # no coprime requirement if using b^n) == b (mod n)
+        local r=$(mexp $a $n $n)
+        if (( r != a ))
+        then
+            #echo >&2 ""fail: mexp $a $n $n --> $r""
+            return 1
+        fi
+    done
+    return 0
+}
+
+function carmichael_test() {
+    local n=$1
+    local a
+    for (( a=2; a<n; a++ ))
+    do
+        # a and n must be coprime if using b^(n-1) == 1 (mod n)
+        if (( $(gcd $a $n) == 1 ))
+        then
+            local r=$(mexp $a $((n-1)) $n)
+            if (( r % n != 1 ))
+            then
+                echo >&2 ""fail: mexp $a $n $n --> $r""
+                return 1
+            fi
+        fi
+    done
+    return 0
+}
+
+# Check if argument is provided
+if [ -z ""$1"" ]
+then
+    echo ""Usage: $0 <number>""
+    exit 1
+fi
+
+# Check if the number is greater than 1
+if [ ""$1"" -le 1 ]
+then
+    echo ""Number should be greater than 1""
+    exit 1
+fi
+
+for(( n=3; n<$1; n+=2 ))
+do
+    if is_carmichael $n
+    then
+        echo ""$n is a Carmichael number""
+    fi
+done"
+"What is the bash script which outputs ""prime"" if its argument is a prime number, ""carmichael"" if it is a Carmichael number (using modular exponentiation) or ""composite"" if it is a composite number?","#!/bin/bash
+
+function gcd() {
+    local a=$1
+    local b=$2
+    while (( $a != $b ))
+    do
+        if (( $a > $b ))
+        then
+            a=$(( a - b ))
+        else
+            b=$(( b - a ))
+        fi
+    done
+    echo $a
+}
+
+# Function to calculate modular power
+function mexp() {
+    local b=$1
+    local e=$2
+    local m=$3
+    local c=1
+
+    #echo >&2 ""mexp $b $e $m""
+
+    # (a*b) mod m = (a mod m) * (b mod m)
+    # b^(2*e+1) mod m = (b^(2*e) mod m) * (b mod m)
+    while (( e > 0 ))
+    do
+        if (( e % 2 == 1 ))
+        then
+            c=$(( (b*c) % m ))
+        fi
+        e=$(( e/2 ))
+        b=$(( (b*b) % m ))
+    done
+
+    echo $c
+}
+
+# Function to check if a number is prime
+is_prime() {
+    local num=$1
+    if (( num <= 1 )); then
+        return 1
+    fi
+    for (( i=2; i*i<=num; i++ ))
+    do
+        if (( num % i == 0 )); then
+            return 1
+        fi
+    done
+    return 0
+}
+
+# Function to check if a number is a Carmichael number
+is_carmichael() {
+    local n=$1
+    local b
+    for (( b=2; b<n; b++ ))
+    do
+        # Check if n is coprime to base b
+        if (( $(gcd $b $n) == 1 ))
+        then
+            if (( $(mexp $b $((n-1)) $n) != 1 ))
+            then
+                return 1
+            fi
+        fi
+    done
+    return 0
+}
+
+
+# Check if the argument is a prime number, a Carmichael number or a composite number
+num=$1
+if is_prime $num; then
+    echo ""Prime""
+    exit 0
+elif is_carmichael $num; then
+    echo ""Carmichael""
+    exit 0
+else
+    echo ""Composite""
+    exit 1
+fi"
+"What is the bash script which outputs ""true"" if its first argument is a Fermat pseudoprime with respect to the base value given as its second argument; otherwise it outputs ""false""?","#!/bin/bash
+
+function gcd() {
+    local a=$1
+    local b=$2
+    while (( $a != $b ))
+    do
+        if (( $a > $b ))
+        then
+            a=$(( a - b ))
+        else
+            b=$(( b - a ))
+        fi
+    done
+    echo $a
+}
+
+# Function to calculate power
+function mexp() {
+    local b=$1
+    local e=$2
+    local m=$3
+    local c=1
+
+    #echo >&2 ""mexp $b $e $m""
+
+    # (a*b) mod m = (a mod m) * (b mod m)
+    # b^(2*e+1) mod m = (b^(2*e) mod m) * (b mod m)
+    while (( e > 0 ))
+    do
+        if (( e % 2 == 1 ))
+        then
+            c=$(( (b*c) % m ))
+        fi
+        e=$(( e/2 ))
+        b=$(( (b*b) % m ))
+    done
+
+    echo $c
+}
+
+function is_prime {
+    local n=$1
+    local i
+
+    if (( n == 2 ))
+    then
+        return 0
+    fi
+
+    if (( n < 2  ||  n % 2 == 0 ))
+    then
+        #echo >&2 ""is_prime(fail) mod 2""
+        return 1
+    fi
+
+    for(( i=3; i*i<=n; i+=2 ))
+    do
+        if (( n % i == 0 ))
+        then
+            #echo >&2 ""is_prime(fail) mod $i""
+            return 1
+        fi
+    done
+
+    return 0
+}
+
+
+function is_pseudoprime() {
+    local n=$1
+    local b=$2
+
+    # We're not looking for primes, only pseudoprimes
+    if is_prime $n
+    then
+        #echo >&2 ""fail: is $n prime""
+        return 1
+    fi
+
+    # Fermat's test
+    local r=$(mexp $b $((n-1)) $n)
+    if (( r % n != 1 ))
+    #if (( r != 1 ))
+    then
+        #echo >&2 ""fail: mexp $b $((n-1)) $n --> $r""
+        return 1
+    fi
+
+    #echo >&2 ""PASS: mexp $b $((n-1)) $n --> $r""
+    return 0
+}
+
+# Check if argument is provided
+if [ -z ""$1"" ]
+then
+    echo ""Usage: $0 <base>""
+    exit 1
+fi
+
+# Check if the number is greater than 1
+if [ ""$1"" -le 1 ]
+then
+    echo ""Number should be greater than 1""
+    exit 1
+fi
+
+n=$1
+base=$2
+
+if is_pseudoprime $n $base
+then
+    echo true
+else
+    echo false
+fi"
+What is the bash script which evaluates Euler's totient function for the nth Fibonacci number where n is given as the argument to the script?,"#!/bin/bash
+#
+# phi(n) = n * (1 - 1/p1) * (1 - 1/p2) * ... * (1 - 1/pk)
+#      n = p1 * p2 * p3 * ... * pk
+#        = (p1 * p2 * p3 * ... * pk) * (1 - 1/p1) * (1 - 1/p2) * ... * (1 - 1/pk)
+#        = (n/(p1*p2*...*pk)) * (p1 - 1) * (p2 - 1) * ... (pk - 1)
+#
+# phi(12) = 12 * (1 - 1/2) * (1 - 1/3) = 12 * 1/2 * 2/3 = 4
+#         = 2 * (2*3) * (1 - 1/2) * (1 - 1/3)
+#         = 2 * (2-1) * (3-1)
+#         = 2 * 1 * 2 = 4
+#
+
+
+# Function to compute the greatest common divisor of $a$ and $b$
+function gcd() {
+    local a=$1
+    local b=$2
+    while (( $a != $b ))
+    do
+        if (( $a > $b ))
+        then
+            a=$(( a - b ))
+        else
+            b=$(( b - a ))
+        fi
+    done
+    echo $a
+}
+
+
+# Function to compute Euler's totient function
+phi() {
+    local n=$1
+    local result=0
+    for (( i=1; i<=n; i++ ))
+    do
+        if (( $(gcd $i $n) == 1 ))
+        then
+            result=$(( result + 1 ))
+        fi
+    done
+    echo $result
+}
+
+fib() {
+    if [ ""$1"" -eq 0 ]; then
+        echo 0
+    elif [ ""$1"" -eq 1 ]; then
+        echo 1
+    else
+        echo $(($(fib $(($1 - 1))) + $(fib $(($1 - 2)))))
+    fi
+}
+
+
+#echo ""phi(9) is $(phi 9)""
+
+n=$1
+f=$(fib $n)
+echo ""The $nth Fibonacci number is $f""
+t=$(phi $f)
+echo ""The totient of $f is $t"""
+What is the bash script which finds all numbers from 10 to its argument which are palindromes in exactly three of the bases 2 thru 16?,"#!/bin/bash
+
+# Function to check if a number is palindrome
+is_palindrome() {
+    local n=$1
+    local r=$(echo ""$n"" | rev)
+    #echo >&2 ""$n --- $r""
+    [ ""$n"" == ""$r"" ]
+}
+
+# Function to find the number of bases in which a number is palindrome
+num_bases() {
+    local n=$1
+    local count=0
+    local base
+    for(( base=2; base<=16; base++ ))
+    do
+        local m=$(echo ""obase=$base; $n"" | bc)
+        #echo >&2 ""$n is $m in base $base""
+        if is_palindrome $m
+        then
+            count=$((count+1))
+        fi
+    done
+    echo $count
+}
+
+print_bases() {
+    local n=$1
+    local base
+    for(( base=2; base<=16; base++ ))
+    do
+        local m=$(echo ""obase=$base; $n"" | bc)
+        #echo >&2 ""$n is $m in base $base""
+        if is_palindrome $m
+        then
+            echo -n "" $base($m)""
+        fi
+    done
+}
+
+# Main function
+if [[ $# -ne 1 ]] || ! [[ $1 =~ ^[0-9]+$ ]]; then
+    echo ""Usage: $0 <integer>""
+    exit 1
+fi
+
+limit=$1
+for(( n=10; n<=limit; n++ ))
+do
+    count=$(( $(num_bases $n) ))
+    if [[ $count -eq 3 ]]
+    then
+        echo -n ""$n: ""
+        print_bases $n
+        echo
+    fi
+done"
